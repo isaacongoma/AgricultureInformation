@@ -16,13 +16,12 @@ class PlantController extends Controller
     }
     public function index(Request $r)
     {
-        $plants= Plant::with(['disease'])->get();
+        $plants= Plant::all();
         return view('plants.index',['plants'=> $plants]);
     }
     public function create()
     {
-        $diseases= Disease::all();
-        return view('plants.create',['diseases'=>$diseases]);
+        return view('plants.create');
     }
     public function store(Request $r)
     {
@@ -33,40 +32,18 @@ class PlantController extends Controller
             'plaga'=> $inputs['plague'],
             'photo'=> $inputs['imagen']
         ]);
-      /*  if($r->hasFile('imagen')) {
-
-            $img = $r->file('imagen');
-            $extension = $img->clientExtension();
-            $plant->photo = 'uploads/' . $img->getFilename() . '.' . $extension;
-
-            Storage::disk('public')->put($img->getFilename() . '.' . $extension, File::get($img));
-        }
-      */
         $plant->save();
         return redirect('/plants');
     }
     public function edit($id)
     {
-        $disease= Disease::all();
         $plant = Plant::find($id);
-        return view('plants.edit', ['plant'=>$plant,'diseases'=>$disease]);
+        return view('plants.edit', ['plant'=>$plant]);
     }
     public function update($id, Request $r)
     {
         $inputs = $r->all();
         $plant = Plant::find($id);
-
-        /*if($r->hasFile('imagen'))
-        {
-
-        // aquí compruebo que exista la foto anterior
-        File::delete($plant->photo);
-        $img = $r->file('imagen');
-        $extension = $img->clientExtension();
-        Storage::disk('public')->put($img->getFilename() . '.' . $extension, File::get($img));
-        //uploads/File_name.pn
-            $plant->photo='uploads/'.$img->getFilename().'.'.$extension;
-        }*/
 
         $plant->name = $inputs['name'];
         $plant->description = $inputs['description'];
