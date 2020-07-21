@@ -29,8 +29,10 @@ class PlagueController extends Controller
             'control_quimico'=> $inputs['controlquimico'],
             'control_biologico'=> $inputs['controlbiologico'],
             'control_cultural'=> $inputs['controlcultural'],
-            'prevencion'=> $inputs['prevencion']
+            'prevencion'=> $inputs['prevencion'],
+            'photo' => $inputs['imagen']
         ]);
+        /*
         if($r->hasFile('imagen')) {
 
             $img = $r->file('imagen');
@@ -39,6 +41,7 @@ class PlagueController extends Controller
 
             Storage::disk('public')->put($img->getFilename() . '.' . $extension, File::get($img));
         }
+        */
         $plague->save();
         return redirect('/pests');
     }
@@ -51,6 +54,7 @@ class PlagueController extends Controller
     {
         $inputs = $r->all();
         $plague = Plague::find($id);
+        /*
         if($r->hasFile('imagen')) {
             // aquí compruebo que exista la foto anterior
             File::delete($plague->photo);
@@ -59,13 +63,15 @@ class PlagueController extends Controller
             Storage::disk('public')->put($img->getFilename() . '.' . $extension, File::get($img));
             $plague->photo = 'uploads/' . $img->getFilename() . '.' . $extension;
             //uploads/File_name.pn
-        }
+        }*/
+
         $plague->name = $inputs['name'];
         $plague->description = $inputs['description'];
         $plague->control_quimico = $inputs['controlquimico'];
         $plague->control_biologico = $inputs['controlbiologico'];
         $plague->control_cultural = $inputs['controlcultural'];
         $plague->prevencion = $inputs['prevencion'];
+        $plague->photo = $inputs['imagen'];
 
         $plague->save();
 
@@ -74,7 +80,7 @@ class PlagueController extends Controller
     public function destroy($id)
     {
         $pests = Plague::find($id);
-        File::delete($pests->photo);
+        //File::delete($pests->photo);
         $pests->delete();
         return redirect('/pests');
     }
