@@ -46,7 +46,6 @@ class PlantController extends Controller
     {
         $inputs = $r->all();
         $plant = Plant::find($id);
-
         $plant->name = $inputs['name'];
         $plant->description = $inputs['description'];
         $plant->enfermedad = $inputs['enfermedades'];
