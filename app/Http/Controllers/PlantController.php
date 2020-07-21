@@ -49,7 +49,7 @@ class PlantController extends Controller
     {
      
         $plant = Plant::find($id);
-        return view('plants.edit', ['plant'=>$plant);
+        return view('plants.edit', ['plant'=>$plant]);
     }
     public function update($id, Request $r)
     {
