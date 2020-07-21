@@ -47,10 +47,10 @@ class PlantController extends Controller
        
         $inputs = $r->all();
    $plants -> update(['name'=> $inputs['name'],
-            'description => $inputs['description'],
-           enfermedad => $inputs['enfermedades'],
-           plaga => $inputs['plague'],
-           photo => $inputs['imagen']
+            'description' => $inputs['description'],
+           'enfermedad' => $inputs['enfermedades'],
+           'plaga' => $inputs['plague'],
+           'photo' => $inputs['imagen']
         ]);
         
         
