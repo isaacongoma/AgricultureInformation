@@ -50,7 +50,7 @@ class PlantController extends Controller
             'description => $inputs['description'],
            enfermedad => $inputs['enfermedades'],
            plaga => $inputs['plague'],
-           photo => $inputs['imagen'],
+           photo => $inputs['imagen']
         ]);
         
         
