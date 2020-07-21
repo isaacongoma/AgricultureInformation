@@ -39,14 +39,14 @@ class PlantController extends Controller
     public function edit($id)
     {
 
-        $plants = Plant::find($id);
-        return view('plants.edit',['plant'=>$plants]);
+        $plant = Plant::find($id);
+        return view('plants.edit',['plant'=>$plant]);
     }
     public function update($id, Request $r)
     {
        
         $inputs = $r->all();
-   $plants -> update(['name'=> $inputs['name'],
+   $plant -> update(['name'=> $inputs['name'],
             'description' => $inputs['description'],
            'enfermedad' => $inputs['enfermedades'],
            'plaga' => $inputs['plague'],
