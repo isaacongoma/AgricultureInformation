@@ -44,8 +44,20 @@ class PlantController extends Controller
     }
     public function update($id, Request $r)
     {
-        $plant = Plant::find($id); 
-        $inputs = $r->all();
+         $inputs = $r->all();
+        $plant = Plant::find($id);
+        
+        if($r->hasFile('imagen'))
+        {
+
+        // aquí compruebo que exista la foto anterior
+        File::delete($plant->photo);
+        $img = $r->file('imagen');
+        $extension = $img->clientExtension();
+        Storage::disk('public')->put($img->getFilename() . '.' . $extension, File::get($img));
+        //uploads/File_name.pn
+            $plant->photo='uploads/'.$img->getFilename().'.'.$extension;
+        }
    $plant -> update(['name'=> $inputs['name'],
             'description' => $inputs['description'],
            'enfermedad' => $inputs['enfermedades'],
