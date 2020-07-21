@@ -16,13 +16,12 @@ class PlantController extends Controller
     }
     public function index(Request $r)
     {
-        $plants= Plant::with(['disease'])->get();
+        $plants= Plant::all();
         return view('plants.index',['plants'=> $plants]);
     }
     public function create()
     {
-        $diseases= Disease::all();
-        return view('plants.create',['diseases'=>$diseases]);
+        return view('plants.create');
     }
     public function store(Request $r)
     {
@@ -33,29 +32,20 @@ class PlantController extends Controller
             'plaga'=> $inputs['plague'],
             'photo'=> $inputs['imagen']
         ]);
-      /*  if($r->hasFile('imagen')) {
 
-            $img = $r->file('imagen');
-            $extension = $img->clientExtension();
-            $plant->photo = 'uploads/' . $img->getFilename() . '.' . $extension;
-
-            Storage::disk('public')->put($img->getFilename() . '.' . $extension, File::get($img));
-        }
-      */
         $plant->save();
         return redirect('/plants');
     }
     public function edit($id)
     {
-     
+
         $plant = Plant::find($id);
-        return view('plants.edit', ['plant'=>$plant]);
+        return view('plants.edit');
     }
     public function update($id, Request $r)
     {
         $inputs = $r->all();
         $plant = Plant::find($id);
-
         $plant->name = $inputs['name'];
         $plant->description = $inputs['description'];
         $plant->enfermedad = $inputs['enfermedades'];
