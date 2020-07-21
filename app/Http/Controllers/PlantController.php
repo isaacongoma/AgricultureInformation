@@ -32,13 +32,15 @@ class PlantController extends Controller
             'plaga'=> $inputs['plague'],
             'photo'=> $inputs['imagen']
         ]);
+
         $plant->save();
         return redirect('/plants');
     }
     public function edit($id)
     {
+
         $plant = Plant::find($id);
-        return view('plants.edit', ['plant'=>$plant]);
+        return view('plants.edit');
     }
     public function update($id, Request $r)
     {
