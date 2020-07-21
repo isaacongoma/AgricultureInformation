@@ -11,10 +11,9 @@
 <div class="container">
     <h1>Editar Plantas</h1>
     <div class="container">
-        <form method="post" action="/plants/{{$plant->id}}}" class="form-horizontal" id="form_plants" enctype="multipart/form-data">
+        <form method="post" action="/plants/{{$plant->id}}}" class="form-horizontal" id="form_plants">
             @method('PUT')
             @csrf
-
 
             <div class="col-lg-6">
 
