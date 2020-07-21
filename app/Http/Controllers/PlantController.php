@@ -47,9 +47,9 @@ class PlantController extends Controller
     }
     public function edit($id)
     {
-        $disease= Disease::all();
+     
         $plant = Plant::find($id);
-        return view('plants.edit', ['plant'=>$plant,'diseases'=>$disease]);
+        return view('plants.edit', ['plant'=>$plant);
     }
     public function update($id, Request $r)
     {
