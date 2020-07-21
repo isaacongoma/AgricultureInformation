@@ -40,7 +40,7 @@ class PlantController extends Controller
     {
 
         $plant = Plant::find($id);
-        return view('plants.edit');
+        return view('plants.edit',['plague'=>$plague]);
     }
     public function update($id, Request $r)
     {
