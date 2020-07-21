@@ -15,7 +15,7 @@ class Plant extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description','disease_id','photo','enfermedad','plaga'
+        'name', 'description','photo','enfermedad','plaga'
     ];
     public function disease()
     {
