@@ -44,8 +44,9 @@ class PlantController extends Controller
     }
     public function update($id, Request $r)
     {
+             $plant = Plant::find($id);
         $inputs = $r->all();
-        $plant = Plant::find($id);
+   
         $plant->name = $inputs['name'];
         $plant->description = $inputs['description'];
         $plant->enfermedad = $inputs['enfermedades'];
